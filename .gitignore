@@ -2,6 +2,7 @@ logs
 target
 .idea
 .idea_modules
+.bsp
 .classpath
 .project
 .settings

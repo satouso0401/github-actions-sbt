@@ -1,7 +1,7 @@
 import Dependencies._
 
 ThisBuild / scalaVersion     := "2.12.8"
-ThisBuild / version          := "0.1.0-SNAPSHOT"
+ThisBuild / version          := "0.0.0"
 ThisBuild / organization     := "com.example"
 ThisBuild / organizationName := "example"
 
@@ -10,6 +10,7 @@ lazy val root = (project in file("."))
     name := "github-actions-sbt",
     libraryDependencies += scalaTest % Test
   )
+  .enablePlugins(JavaAppPackaging) // .enablePlugins(JavaServerAppPackaging)
 
 // Uncomment the following for publishing to Sonatype.
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for more detail.

@@ -1,5 +1,8 @@
 name: Scala CI
 
+env:
+  IMAGE_NAME: 1
+
 on:
   push:
     branches: [ main ]
@@ -19,3 +22,11 @@ jobs:
         java-version: 1.8
     - name: Run tests
       run: sbt test
+    - name: Publish Local
+      run: sbt docker:publishLocal
+    - name: Login GitHub Registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u owner --password-stdin
+    - name: Push image to GitHub Registry
+      run: |
+        docker tag ${IMAGE_NAME}:0.0.0 docker.pkg.github.com/${{ github.repository }}/${IMAGE_NAME}:${{ GITHUB_SHA }}
+        docker push docker.pkg.github.com/${{ github.repository }}/${IMAGE_NAME}:${{ GITHUB_SHA }}
