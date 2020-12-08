@@ -22,6 +22,8 @@ jobs:
         java-version: 1.8
     - name: Run tests
       run: sbt test
+    # sbt-native-packager doesn't support Docker repository authentication, so do a docker push after publish to your local repository.
+    # https://www.scala-sbt.org/sbt-native-packager/formats/docker.html#requirements
     - name: Publish Local
       run: sbt docker:publishLocal
     - name: Login GitHub Registry
